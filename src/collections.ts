@@ -1,5 +1,6 @@
 import { State, useHookstate } from "@hookstate/core";
 import { Groups } from "groups";
+import { Selectors } from "selectors";
 
 /**
  * States must have id property
@@ -8,10 +9,12 @@ export class Collection<StateType extends { id: string | number }> {
 	//the whole collection is a state
 	public states: State<{ [key: string | number]: StateType }, {}>;
 	public groups_class: Groups;
+	public selector_class: Selectors;
 
-	constructor(items: StateType[], groups: { [group: string]: (string | number)[] } = {}) {
+	constructor(items: StateType[], groups: { [group: string]: (string | number)[] } = {}, selectors: { [selector: string]: string | number }) {
 		this.states = this.normalized_states(items);
 		this.groups_class = new Groups(groups);
+		this.selector_class = new Selectors(selectors);
 	}
 
 	private normalized_states(states: StateType[]) {
@@ -21,6 +24,15 @@ export class Collection<StateType extends { id: string | number }> {
 				return acc;
 			}, {} as { [key: string | number]: StateType })
 		);
+	}
+
+	/** all funcionality related to selectors **/
+	public get selectors() {
+		return this.selector_class.selectors;
+	}
+
+	public get selector() {
+		return this.selector_class;
 	}
 
 	/** all functionality related to groups **/

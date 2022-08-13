@@ -6,7 +6,7 @@ export class Groups {
 		this.groups = useHookstate(groups);
 	}
 
-	public add(name: string, members?: (string | number)[]): void {
+	public add(name: string, members: (string | number)[] = []): void {
 		this.groups.merge({ [name]: members });
 	}
 
