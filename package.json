@@ -1,0 +1,13 @@
+{
+  "name": "mix",
+  "version": "1.0.0",
+  "description": "extension for hook state library that provides extra data management features",
+  "main": "index.ts",
+  "repository": "https://github.com/saisumith770/-mix.git",
+  "author": "saisumith770",
+  "license": "MIT",
+  "dependencies": {
+    "@hookstate/core": "^4.0.0-rc21",
+    "react": "^18.2.0"
+  }
+}
