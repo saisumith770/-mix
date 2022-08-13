@@ -8,13 +8,13 @@ import { Selectors } from "selectors";
 export class Collection<StateType extends { id: string | number }> {
 	//the whole collection is a state
 	public states: State<{ [key: string | number]: StateType }, {}>;
-	public groups_class: Groups;
-	public selector_class: Selectors;
+	public groups_class: Groups<StateType>;
+	public selector_class: Selectors<StateType>;
 
 	constructor(items: StateType[], groups: { [group: string]: (string | number)[] } = {}, selectors: { [selector: string]: string | number }) {
 		this.states = this.normalized_states(items);
-		this.groups_class = new Groups(groups);
-		this.selector_class = new Selectors(selectors);
+		this.groups_class = new Groups(this, groups);
+		this.selector_class = new Selectors(this, selectors);
 	}
 
 	private normalized_states(states: StateType[]) {
