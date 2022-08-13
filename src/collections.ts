@@ -11,7 +11,7 @@ export class Collection<StateType extends { id: string | number }> {
 	public groups_class: Groups<StateType>;
 	public selector_class: Selectors<StateType>;
 
-	constructor(items: StateType[], groups: { [group: string]: (string | number)[] } = {}, selectors: { [selector: string]: string | number }) {
+	constructor(items: StateType[], groups: { [group: string]: (string | number)[] } = {}, selectors: { [selector: string]: string | number } = {}) {
 		this.states = this.normalized_states(items);
 		this.groups_class = new Groups(this, groups);
 		this.selector_class = new Selectors(this, selectors);
